@@ -1,0 +1,15 @@
+body{
+  padding-top:80px;
+  word-wrap:break-word;
+  background: #e87737;
+  font-family: 'Heebo', sans-serif;
+}
+img{
+  height: 350px;
+  padding: 14px;
+  margin-right: 70px;
+}
+
+div.jumbotron.text-center {
+  background: #e87737;
+}

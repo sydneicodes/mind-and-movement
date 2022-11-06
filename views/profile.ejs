@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-leaf"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+
+          <h2>Daily Log</h2>
+        <% if (user.local.email) { %>
+          
+          <form action="/messages" method="POST">
+
+            <fieldset>
+              <legend>Date: </legend>
+              <input type="date" placeholder="Please Enter Date" name="date" required>
+            </fieldset>
+
+            <fieldset>
+              <legend>What are you going to do to get moving today?</legend>
+              <textarea name="movement" placeholder="i.e. take a walk, yoga..." cols="40" rows="4" required></textarea>
+            </fieldset>
+
+            <fieldset>
+              <legend>What are you going to do to improve your mindset today?</legend>
+              <textarea name="mind" placeholder="i.e. meditate, learn a new skill" cols="40" rows="4" required></textarea>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <% } %>
+
+        <h3>Goal Tracker:</h3>
+        <ul class="messages">
+        <% for(var i=0; i<messages.length; i++) {%>
+          <li class="message <%= messages[i].goalsReached ? 'green' : '' %>">
+            <span> Date :<%= messages[i].date %></span>
+            <span> Movement Goal:<%= messages[i].movement %></span>
+            <span> Mind Goal: <%= messages[i].mind%> </span>
+            <button class="goalReached">Goals Reached!</button>
+            <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+          </li>
+        <% } %>
+        </ul>
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
