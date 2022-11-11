@@ -13,3 +13,7 @@ img{
 div.jumbotron.text-center {
   background: #e87737;
 }
+
+.crossedOut {
+  text-decoration: line-through;
+}

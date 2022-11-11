@@ -1,3 +1,5 @@
+const { ObjectId } = require("mongodb");
+
 module.exports = function(app, passport, db) {
 
 // normal routes ===============================================================
@@ -26,7 +28,7 @@ module.exports = function(app, passport, db) {
 
 // message board routes ===============================================================
     let dailyGoals = db.collection('goals')
-    app.post('/messages', (req, res) => {
+    app.post('/goals', (req, res) => {
       console.log(req.body)
       dailyGoals.insertOne({
         date: req.body.date, 
@@ -40,23 +42,9 @@ module.exports = function(app, passport, db) {
       })
     })
 
-    // app.put('/messages', (req, res) => {
-    //   dailyGoals.findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-    //     $set: {
-    //       thumbUp: req.body.thumbUp + 1
-    //     }
-    //   }, {
-    //     sort: {_id: -1},
-    //     upsert: true
-    //   }, (err, result) => {
-    //     if (err) return res.send(err)
-    //     res.send(result)
-    //   })
-    // })
-
     app.put('/goalReached', (req, res) => {
       db.collection('goals')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+      .findOneAndUpdate({_id: ObjectId(req.body._id)}, {
         $set: {
           goalReached: true
         }
@@ -70,7 +58,7 @@ module.exports = function(app, passport, db) {
     })
 
     app.delete('/delete', (req, res) => {
-      db.collection('goals').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+      db.collection('goals').findOneAndDelete({_id: ObjectId(req.body._id)}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })

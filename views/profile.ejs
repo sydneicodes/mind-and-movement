@@ -11,7 +11,7 @@
 
     <div class="page-header text-center">
         <h1><span class="fa fa-leaf"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
@@ -20,7 +20,7 @@
           <h2>Daily Log</h2>
         <% if (user.local.email) { %>
           
-          <form action="/messages" method="POST">
+          <form action="/goals" method="POST">
 
             <fieldset>
               <legend>Date: </legend>
@@ -45,12 +45,12 @@
         <h3>Goal Tracker:</h3>
         <ul class="messages">
         <% for(var i=0; i<messages.length; i++) {%>
-          <li class="message <%= messages[i].goalsReached ? 'green' : '' %>">
-            <span> Date :<%= messages[i].date %></span>
-            <span> Movement Goal:<%= messages[i].movement %></span>
+          <li id="<%= messages[i]._id %>" <%= messages[i].goalReached ? "class=crossedOut" : "class=incomplete" %>>
+            <span> Date: <%= messages[i].date %></span>
+            <span> Movement Goal: <%= messages[i].movement %></span>
             <span> Mind Goal: <%= messages[i].mind%> </span>
             <button class="goalReached">Goals Reached!</button>
-            <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
           </li>
         <% } %>
         </ul>
