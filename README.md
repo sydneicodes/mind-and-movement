@@ -1,3 +1,5 @@
+![mind-movement](https://user-images.githubusercontent.com/99233457/201454324-85f026b0-a72f-48d0-802e-21557d3dc9a4.png)
+
 ## Installation
 
 1. Clone repo
@@ -6,7 +8,7 @@
 ## Usage
 
 1. run `node server.js`
-2. Navigate to `localhost:8080`
+2. Navigate to `localhost:8000`
 
 ## Credit
 
